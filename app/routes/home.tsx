@@ -110,7 +110,7 @@ export default function Home() {
             flexWrap: 'wrap'
           }}>
             <img
-              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWp5dDRta3ZzYmN6eWk2YTI3dGVlZGc3ZXY3azJwOGVtZXp6OGt6OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/mlvseq9yvZhba/giphy.gif"
+              src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHFjajBpMmdybjI3bGdicHc5a2JlMmY3Mmx5c3c1a2gzMmZoOXZ4MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s27IzBhyGasp6aFO3e/giphy.gif"
               alt="Celebration cat"
               style={{
                 width: '150px',
@@ -121,7 +121,7 @@ export default function Home() {
               }}
             />
             <img
-              src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif"
+              src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXRqbmdmZndyeXA3aXZxNTF2ZXp1bG01bWxrZDJwMWFjcTJpOTNsZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xEXrQdtLXrAdmyeFA7/giphy.gif"
               alt="Mind blown"
               style={{
                 width: '150px',
