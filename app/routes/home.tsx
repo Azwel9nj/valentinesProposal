@@ -9,6 +9,118 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
+// Image Carousel Component
+interface ImageCarouselProps {
+  images: string[];
+  alts: string[];
+  autoPlay?: boolean;
+  interval?: number;
+}
+
+function ImageCarousel({ images, alts, autoPlay = true, interval = 4000 }: ImageCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!autoPlay || isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [autoPlay, isPaused, images.length, interval]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 5000); // Resume auto-play after 5s
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 5000);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 5000);
+  };
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  return (
+    <div className="carousel-container">
+      <div
+        className="carousel-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div
+          className="carousel-slides"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {images.map((img, index) => (
+            <div key={index} className="carousel-slide">
+              <img src={img} alt={alts[index]} className="carousel-image" />
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <button className="carousel-arrow carousel-arrow-left" onClick={goToPrevious}>
+          ‹
+        </button>
+        <button className="carousel-arrow carousel-arrow-right" onClick={goToNext}>
+          ›
+        </button>
+      </div>
+
+      {/* Dot Indicators */}
+      <div className="carousel-dots">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [noClickCount, setNoClickCount] = useState(0);
   const [showYesMessage, setShowYesMessage] = useState(false);
@@ -63,7 +175,13 @@ export default function Home() {
       case 2: return "Really?";
       case 3: return "Think again...";
       case 4: return "Please? 🥺";
-      default: return "Okay fine...";
+      case 5: return "Ekse you performing";
+      case 6: return "I ll buy you sharwama.";
+      case 7: return "Saht you can't tounce.";
+      case 8: return "Apa its to just say yes.";
+      case 9: return "YOU TRIPPING BALLS 🥺";
+      case 10: return "YOU TRIPPING BALLS 🥺";
+      default: return "SAHHHHT IWE🥺"
     }
   };
 
@@ -89,6 +207,30 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Floating GIFs */}
+        <div className="floating-gifs">
+          <img
+            src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHFjajBpMmdybjI3bGdicHc5a2JlMmY3Mmx5c3c1a2gzMmZoOXZ4MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s27IzBhyGasp6aFO3e/giphy.gif"
+            alt="Celebration"
+            className="floating-gif floating-gif-1"
+          />
+          <img
+            src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXRqbmdmZndyeXA3aXZxNTF2ZXp1bG01bWxrZDJwMWFjcTJpOTNsZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xEXrQdtLXrAdmyeFA7/giphy.gif"
+            alt="Celebration"
+            className="floating-gif floating-gif-2"
+          />
+          <img
+            src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif"
+            alt="Love"
+            className="floating-gif floating-gif-3"
+          />
+          <img
+            src="https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif"
+            alt="Hearts"
+            className="floating-gif floating-gif-4"
+          />
+        </div>
+
         <div className="proposal-card celebration-card">
           <h1 className="proposal-title celebration-title" style={{ position: 'relative' }}>
             🎉 YES! 🎉
@@ -100,38 +242,6 @@ export default function Home() {
           <p className="proposal-subtitle" style={{ fontSize: '1.8rem', marginTop: '1rem' }}>
             You've made me the happiest person alive EKSE!!!! 💖
           </p>
-
-          {/* Fun Celebration GIFs */}
-          <div style={{
-            display: 'flex',
-            gap: '1.5rem',
-            justifyContent: 'center',
-            margin: '1.5rem 0 2rem 0',
-            flexWrap: 'wrap'
-          }}>
-            <img
-              src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHFjajBpMmdybjI3bGdicHc5a2JlMmY3Mmx5c3c1a2gzMmZoOXZ4MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s27IzBhyGasp6aFO3e/giphy.gif"
-              alt="Celebration cat"
-              style={{
-                width: '150px',
-                height: '150px',
-                borderRadius: '15px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-                objectFit: 'cover'
-              }}
-            />
-            <img
-              src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXRqbmdmZndyeXA3aXZxNTF2ZXp1bG01bWxrZDJwMWFjcTJpOTNsZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xEXrQdtLXrAdmyeFA7/giphy.gif"
-              alt="Mind blown"
-              style={{
-                width: '150px',
-                height: '150px',
-                borderRadius: '15px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-                objectFit: 'cover'
-              }}
-            />
-          </div>
 
           {/* Promises Section - Moved UP for visibility */}
           <div className="sweet-messages" style={{
@@ -177,22 +287,31 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Celebration Images - 7 personalized photos */}
-          <div className="image-gallery celebration-gallery" style={{
-            marginTop: '0',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1rem'
-          }}>
-            <img src="/Mamah/celebration1.jpeg" alt="Celebration moment 1" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration2.jpeg" alt="Celebration moment 2" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration3.jpeg" alt="Celebration moment 3" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration4.jpeg" alt="Celebration moment 4" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration5.jpeg" alt="Celebration moment 5" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration6.jpeg" alt="Celebration moment 6" className="gallery-image" style={{ height: '200px' }} />
-            <img src="/Mamah/celebration7.jpeg" alt="Celebration moment 7" className="gallery-image" style={{ height: '200px' }} />
-          </div>
+          {/* Celebration Photo Carousel */}
+          <ImageCarousel
+            images={[
+              '/Mamah/celebration1.jpeg',
+              '/Mamah/celebration2.jpeg',
+              '/Mamah/celebration3.jpeg',
+              '/Mamah/celebration4.jpeg',
+              '/Mamah/celebration5.jpeg',
+              '/Mamah/celebration6.jpeg',
+              '/Mamah/celebration7.jpeg'
+            ]}
+            alts={[
+              'Celebration moment 1',
+              'Celebration moment 2',
+              'Celebration moment 3',
+              'Celebration moment 4',
+              'Celebration moment 5',
+              'Celebration moment 6',
+              'Celebration moment 7'
+            ]}
+            autoPlay={true}
+            interval={3000}
+          />
         </div>
-      </div>
+      </div >
     );
   }
 
@@ -212,17 +331,33 @@ export default function Home() {
           This Valentine's Day, and every day after...
         </p>
 
-        <div className="image-gallery" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.42.12.jpeg" alt="Beautiful moment" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.53.43.jpeg" alt="Sweet memory" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.59.58.jpeg" alt="Precious time" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.01.38.jpeg" alt="Special moment" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.02.14.jpeg" alt="Lovely day" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.09.03.jpeg" alt="Happy times" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.10.58.jpeg" alt="Cherished moment" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.26.18.jpeg" alt="Amazing day" className="gallery-image" />
-          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg" alt="Wonderful memory" className="gallery-image" />
-        </div>
+        {/* Photo Carousel */}
+        <ImageCarousel
+          images={[
+            '/Mamah/WhatsApp Image 2026-02-02 at 09.42.12.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 09.53.43.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 09.59.58.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.01.38.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.02.14.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.09.03.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.10.58.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg'
+          ]}
+          alts={[
+            'Beautiful moment',
+            'Sweet memory',
+            'Precious time',
+            'Special moment',
+            'Lovely day',
+            'Happy times',
+            'Cherished moment',
+            'Amazing day',
+            'Wonderful memory'
+          ]}
+          autoPlay={true}
+          interval={4000}
+        />
 
         <div className="sweet-messages">
           {sweetMessages.map((message, index) => (

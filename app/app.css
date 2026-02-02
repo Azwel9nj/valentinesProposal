@@ -649,6 +649,192 @@ body::before {
   }
 }
 
+/* Carousel Styles */
+.carousel-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: var(--color-deep-rose);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-rose);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+}
+
+.carousel-arrow-left {
+  left: 10px;
+}
+
+.carousel-arrow-right {
+  right: 10px;
+}
+
+/* Carousel Dot Indicators */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+  padding: 0;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-rose);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 107, 157, 0.5);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background: var(--color-rose);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+}
+
+/* Floating GIFs */
+.floating-gifs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.floating-gif {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  animation: float-gif 15s ease-in-out infinite;
+}
+
+.floating-gif-1 {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.floating-gif-2 {
+  top: 60%;
+  right: 5%;
+  animation-delay: 3s;
+}
+
+.floating-gif-3 {
+  bottom: 15%;
+  left: 10%;
+  animation-delay: 6s;
+  width: 100px;
+  height: 100px;
+}
+
+.floating-gif-4 {
+  top: 30%;
+  right: 8%;
+  animation-delay: 9s;
+  width: 110px;
+  height: 110px;
+}
+
+@keyframes float-gif {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+
+  25% {
+    transform: translateY(-30px) rotate(5deg) scale(1.05);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(-5deg) scale(0.95);
+    opacity: 0.9;
+  }
+
+  75% {
+    transform: translateY(-40px) rotate(3deg) scale(1.02);
+    opacity: 0.95;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .proposal-card {
@@ -682,6 +868,40 @@ body::before {
 
   .button-container {
     gap: 1rem;
+  }
+
+  /* Carousel Mobile Adjustments */
+  .carousel-container {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-arrow-left {
+    left: 5px;
+  }
+
+  .carousel-arrow-right {
+    right: 5px;
+  }
+
+  .carousel-image {
+    max-height: 350px;
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Hide floating GIFs on mobile for performance */
+  .floating-gifs {
+    display: none;
   }
 }
 
