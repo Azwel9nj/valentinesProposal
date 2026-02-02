@@ -366,7 +366,11 @@ export default function Home() {
             '/Mamah/WhatsApp Image 2026-02-02 at 10.09.03.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 10.10.58.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18.jpeg',
-            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg'
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18vv.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19er.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19qww.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19wq.jpeg',
           ]}
           alts={[
             'Beautiful moment',
