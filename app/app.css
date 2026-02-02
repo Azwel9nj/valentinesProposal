@@ -26,6 +26,10 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  /* Performance optimizations */
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Animated Background Hearts */
@@ -43,6 +47,8 @@ body::before {
   pointer-events: none;
   animation: pulse 8s ease-in-out infinite;
   z-index: 0;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 @keyframes pulse {
@@ -67,6 +73,8 @@ body::before {
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .heart {
@@ -75,6 +83,8 @@ body::before {
   font-size: 24px;
   opacity: 0;
   animation: float-up 10s infinite ease-in;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .heart:nth-child(1) {
@@ -421,6 +431,8 @@ body::before {
   pointer-events: none;
   z-index: 100;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .confetti {
@@ -431,6 +443,8 @@ body::before {
   top: -10px;
   opacity: 0;
   animation: confetti-fall 3s linear infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .confetti:nth-child(1) {
@@ -771,6 +785,8 @@ body::before {
   pointer-events: none;
   z-index: 5;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .floating-gif {
@@ -781,6 +797,8 @@ body::before {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   object-fit: cover;
   animation: float-gif 15s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .floating-gif-1 {
