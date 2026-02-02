@@ -358,6 +358,8 @@ export default function Home() {
         {/* Photo Carousel */}
         <ImageCarousel
           images={[
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19er.jpeg',
+            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19wq.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 09.42.12.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 09.53.43.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 09.59.58.jpeg',
@@ -368,9 +370,7 @@ export default function Home() {
             '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg',
             '/Mamah/WhatsApp Image 2026-02-02 at 10.26.18vv.jpeg',
-            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19er.jpeg',
-            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19qww.jpeg',
-            '/Mamah/WhatsApp Image 2026-02-02 at 10.26.19wq.jpeg',
+
           ]}
           alts={[
             'Beautiful moment',
