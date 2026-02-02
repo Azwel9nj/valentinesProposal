@@ -177,16 +177,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Images at bottom - compact 4 column layout */}
+          {/* Celebration Images - 7 personalized photos */}
           <div className="image-gallery celebration-gallery" style={{
             marginTop: '0',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '1rem'
           }}>
-            <img src="/images/roses.png" alt="Beautiful roses" className="gallery-image" style={{ height: '180px' }} />
-            <img src="/images/hearts.png" alt="Floating hearts" className="gallery-image" style={{ height: '180px' }} />
-            <img src="/images/couple.png" alt="Romantic couple" className="gallery-image" style={{ height: '180px' }} />
-            <img src="/images/letter.png" alt="Love letter" className="gallery-image" style={{ height: '180px' }} />
+            <img src="/Mamah/celebration1.jpeg" alt="Celebration moment 1" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration2.jpeg" alt="Celebration moment 2" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration3.jpeg" alt="Celebration moment 3" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration4.jpeg" alt="Celebration moment 4" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration5.jpeg" alt="Celebration moment 5" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration6.jpeg" alt="Celebration moment 6" className="gallery-image" style={{ height: '200px' }} />
+            <img src="/Mamah/celebration7.jpeg" alt="Celebration moment 7" className="gallery-image" style={{ height: '200px' }} />
           </div>
         </div>
       </div>
@@ -203,17 +206,22 @@ export default function Home() {
 
       <div className="proposal-card">
         <h1 className="proposal-title">
-          Would You Be My Valentine?
+          Hey Mamahhhh ❤️ Would You Be My Valentine?
         </h1>
         <p className="proposal-subtitle">
           This Valentine's Day, and every day after...
         </p>
 
-        <div className="image-gallery">
-          <img src="/images/roses.png" alt="Beautiful roses" className="gallery-image" />
-          <img src="/images/hearts.png" alt="Floating hearts" className="gallery-image" />
-          <img src="/images/couple.png" alt="Romantic couple" className="gallery-image" />
-          <img src="/images/letter.png" alt="Love letter" className="gallery-image" />
+        <div className="image-gallery" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.42.12.jpeg" alt="Beautiful moment" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.53.43.jpeg" alt="Sweet memory" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 09.59.58.jpeg" alt="Precious time" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.01.38.jpeg" alt="Special moment" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.02.14.jpeg" alt="Lovely day" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.09.03.jpeg" alt="Happy times" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.10.58.jpeg" alt="Cherished moment" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.26.18.jpeg" alt="Amazing day" className="gallery-image" />
+          <img src="/Mamah/WhatsApp Image 2026-02-02 at 10.26.18ff.jpeg" alt="Wonderful memory" className="gallery-image" />
         </div>
 
         <div className="sweet-messages">

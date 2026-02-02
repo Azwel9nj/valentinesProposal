@@ -664,7 +664,7 @@ body::before {
   }
 
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .gallery-image {
