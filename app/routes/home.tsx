@@ -124,6 +124,7 @@ function ImageCarousel({ images, alts, autoPlay = true, interval = 4000 }: Image
 export default function Home() {
   const [noClickCount, setNoClickCount] = useState(0);
   const [showYesMessage, setShowYesMessage] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Play Rick Astley when celebration shows
@@ -136,10 +137,24 @@ export default function Home() {
         if (audioRef.current) {
           audioRef.current.muted = false;
           audioRef.current.volume = 0.3; // 30% volume
+          setIsMusicPlaying(true);
         }
       }).catch(err => console.log('Audio play failed:', err));
     }
   }, [showYesMessage]);
+
+  // Toggle music play/pause
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+        setIsMusicPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsMusicPlaying(true);
+      }
+    }
+  };
 
   const sweetMessages = [
     "Every moment with you feels like a dream come true... 💕",
@@ -193,9 +208,9 @@ export default function Home() {
           <source src="https://ia800503.us.archive.org/29/items/NeverGonnaGiveYouUp/jocofullinterview41.mp3" type="audio/mpeg" />
         </audio>
 
-        {/* Confetti */}
+        {/* Confetti - LOTS MORE! */}
         <div className="confetti-container">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(100)].map((_, i) => (
             <div key={i} className="confetti"></div>
           ))}
         </div>
@@ -230,6 +245,15 @@ export default function Home() {
             className="floating-gif floating-gif-4"
           />
         </div>
+
+        {/* Music Control Button */}
+        <button className="music-control-btn" onClick={toggleMusic} aria-label="Toggle music">
+          {isMusicPlaying ? (
+            <span className="music-icon">🔊</span>
+          ) : (
+            <span className="music-icon">🔇</span>
+          )}
+        </button>
 
         <div className="proposal-card celebration-card">
           <h1 className="proposal-title celebration-title" style={{ position: 'relative' }}>

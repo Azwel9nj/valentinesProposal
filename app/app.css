@@ -835,6 +835,105 @@ body::before {
   }
 }
 
+/* Music Control Button */
+.music-control-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.95), rgba(162, 155, 254, 0.95));
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 10px 30px rgba(255, 107, 157, 0.5),
+    0 0 20px rgba(255, 107, 157, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: music-btn-pulse 2s ease-in-out infinite;
+}
+
+.music-control-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow:
+    0 15px 40px rgba(255, 107, 157, 0.7),
+    0 0 30px rgba(255, 107, 157, 0.5);
+}
+
+.music-control-btn:active {
+  transform: scale(0.95);
+}
+
+.music-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes music-btn-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 10px 30px rgba(255, 107, 157, 0.5),
+      0 0 20px rgba(255, 107, 157, 0.3);
+  }
+
+  50% {
+    box-shadow:
+      0 15px 40px rgba(255, 107, 157, 0.7),
+      0 0 40px rgba(255, 107, 157, 0.6);
+  }
+}
+
+/* More Confetti Variations */
+.confetti:nth-child(n+21):nth-child(-n+40) {
+  background: linear-gradient(45deg, #ff6b9d, #ffd700);
+}
+
+.confetti:nth-child(n+41):nth-child(-n+60) {
+  background: linear-gradient(45deg, #a29bfe, #ff6b9d);
+}
+
+.confetti:nth-child(n+61):nth-child(-n+80) {
+  background: linear-gradient(45deg, #ffd700, #a29bfe);
+}
+
+.confetti:nth-child(n+81):nth-child(-n+100) {
+  background: linear-gradient(45deg, #ff6b9d, #a29bfe);
+  animation-duration: 4s;
+}
+
+/* Stagger confetti delays for continuous effect */
+.confetti:nth-child(5n+1) {
+  animation-delay: 0.1s;
+  left: 15%;
+}
+
+.confetti:nth-child(5n+2) {
+  animation-delay: 0.3s;
+  left: 35%;
+}
+
+.confetti:nth-child(5n+3) {
+  animation-delay: 0.5s;
+  left: 55%;
+}
+
+.confetti:nth-child(5n+4) {
+  animation-delay: 0.7s;
+  left: 75%;
+}
+
+.confetti:nth-child(5n+5) {
+  animation-delay: 0.9s;
+  left: 95%;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .proposal-card {
@@ -902,6 +1001,18 @@ body::before {
   /* Hide floating GIFs on mobile for performance */
   .floating-gifs {
     display: none;
+  }
+
+  /* Music button mobile adjustments */
+  .music-control-btn {
+    width: 60px;
+    height: 60px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .music-icon {
+    font-size: 1.5rem;
   }
 }
 
